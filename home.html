@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thimphu Primary School</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@400;500;600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --yellow: #F4D03F;
+    --yellow-dark: #5a4000;
+    --yellow-light: #FEF9E0;
+    --dark: #1a1a1a;
+    --light: #f7f6f2;
+    --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Raleway', sans-serif; background: var(--dark); color: var(--dark); overflow-x: hidden; }
+
+  /* NAV — white background so logo is visible */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 40px;
+    background: #2e2e2e;
+    border-bottom: 2px solid var(--yellow);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { height: 44px; width: auto; object-fit: contain; mix-blend-mode: screen; }
+  .nav-school-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--white); }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--yellow-dark); }
+  .nav-cta {
+    background: var(--yellow); color: var(--yellow-dark) !important;
+    padding: 9px 20px; border-radius: 7px; font-weight: 700 !important;
+    transition: transform 0.15s, background 0.15s !important;
+  }
+  .nav-cta:hover { background: #ffe033; transform: translateY(-1px); }
+
+  /* HERO with parallax */
+  .hero {
+    position: relative; height: 100vh; min-height: 600px;
+    display: flex; align-items: flex-end;
+    overflow: hidden; margin-top: 68px;
+  }
+  .hero-bg {
+    position: absolute; inset: -20% 0;
+    background: url('images/hero.jpg') center/cover no-repeat;
+    will-change: transform;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 55%);
+  }
+  .hero-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: var(--yellow); }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 48px 72px; max-width: 820px;
+    will-change: transform;
+  }
+  .hero-tag {
+    font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yellow); margin-bottom: 18px; display: block;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6.5vw, 72px);
+    color: var(--white); line-height: 1.08; margin-bottom: 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--yellow); }
+  .hero p {
+    font-size: 16px; color: rgba(255,255,255,0.72);
+    line-height: 1.75; max-width: 500px; margin-bottom: 36px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow); color: var(--yellow-dark);
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px;
+    padding: 14px 30px; border-radius: 8px; text-decoration: none;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); background: #ffe033; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--white);
+    font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px;
+    padding: 14px 30px; border-radius: 8px; text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+  /* UPDATES HIGHLIGHT SECTION */
+  .updates-highlight {
+    background: var(--yellow);
+    padding: 40px 48px;
+  }
+  .updates-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .updates-left { flex: 1; }
+  .updates-eyebrow {
+    font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(90,64,0,0.6); margin-bottom: 8px;
+  }
+  .updates-left h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--yellow-dark); margin-bottom: 6px;
+  }
+  .updates-left p {
+    font-size: 14px; color: rgba(90,64,0,0.7); line-height: 1.6;
+  }
+  .updates-classes {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .class-btn {
+    background: var(--dark) !important; color: #ffffff !important;
+    font-family: 'DM Serif Display', serif; font-size: 15px;
+    padding: 10px 20px; border-radius: 8px; text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .class-btn:hover { transform: translateY(-2px); border-color: var(--yellow) !important; }
+
+  /* VISION */
+  .vision-strip {
+    background: var(--dark); padding: 28px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .vision-label {
+    font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--yellow); white-space: nowrap;
+  }
+  .vision-div { width: 1px; height: 36px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+  .vision-strip p {
+    font-family: 'DM Serif Display', serif; font-style: italic;
+    font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.6;
+  }
+
+  /* PARALLAX PHOTO SECTIONS */
+  .parallax-section {
+    position: relative; height: 420px; overflow: hidden;
+  }
+  .parallax-bg {
+    position: absolute; inset: -25% 0;
+    background-size: cover; background-position: center;
+    will-change: transform;
+  }
+  .parallax-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 40px;
+  }
+  .parallax-text h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 48px); color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parallax-text p {
+    font-size: 15px; color: rgba(255,255,255,0.75);
+    max-width: 480px; line-height: 1.7;
+  }
+
+  /* PARENT CARDS */
+  .section { padding: 72px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--yellow-dark); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3.5vw, 38px); color: var(--dark);
+    line-height: 1.2; margin-bottom: 6px;
+  }
+  .section-sub { font-size: 14px; color: #888; margin-bottom: 36px; }
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pcard {
+    background: var(--dark); border: 1px solid #ebebeb;
+    border-radius: 14px; padding: 28px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .pcard:hover { transform: translateY(-4px); border-color: var(--yellow); box-shadow: 0 8px 24px rgba(244,208,63,0.15); }
+  .pcard-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+  .pcard-icon.y { background: var(--yellow-light); }
+  .pcard-icon.g { background: #E1F5EE; }
+  .pcard-icon.b { background: #E6F1FB; }
+  .pcard h3 { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--dark); margin-bottom: 8px; }
+  .pcard p { font-size: 13px; color: #777; line-height: 1.65; margin-bottom: 18px; }
+  .pcard-arrow { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: var(--yellow-dark); }
+
+  /* NEWS + FACEBOOK */
+  .news-bg { background: var(--light); padding: 72px 48px; }
+  .news-inner { max-width: 1100px; margin: 0 auto; }
+  .news-grid { display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; margin-top: 36px; }
+  .news-list { display: flex; flex-direction: column; gap: 16px; }
+  .ncard {
+    background: var(--dark); border: 1px solid #e8e8e8;
+    border-radius: 12px; padding: 22px 26px;
+    transition: border-color 0.2s;
+  }
+  .ncard:hover { border-color: var(--yellow); }
+  .ntag {
+    display: inline-block; background: var(--yellow-light); color: var(--yellow-dark);
+    font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .ncard h3 { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--dark); margin-bottom: 6px; }
+  .ncard p { font-size: 13px; color: #777; line-height: 1.6; }
+  .ndate { font-family: 'Poppins', sans-serif; font-size: 11px; color: #aaa; margin-top: 10px; }
+
+  /* FACEBOOK EMBED */
+  .fb-wrap {
+    background: var(--dark); border: 1px solid #e8e8e8;
+    border-radius: 14px; overflow: hidden;
+  }
+  .fb-header {
+    background: var(--dark); padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .fb-circle {
+    width: 36px; height: 36px; background: #1877F2; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; font-family: serif; color: var(--white);
+    flex-shrink: 0;
+  }
+  .fb-header-text h4 { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--white); }
+  .fb-header-text p { font-size: 11px; color: rgba(255,255,255,0.5); font-family: 'Poppins', sans-serif; }
+  .fb-embed { display: block; width: 100%; border: none; min-height: 500px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    border-top: 4px solid var(--yellow);
+  }
+  .footer-left { display: flex; align-items: center; gap: 16px; }
+  .footer-left img { height: 44px; width: auto; object-fit: contain; mix-blend-mode: screen; }
+  .footer-school { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--white); }
+  .footer-tag { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; font-family: 'Poppins', sans-serif; }
+  .footer-right { font-size: 12px; color: rgba(255,255,255,0.3); font-family: 'Poppins', sans-serif; text-align: right; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hero { margin-top: 62px; }
+    .hero-content { padding: 0 20px 48px; }
+    .updates-highlight { padding: 32px 20px; }
+    .updates-inner { flex-direction: column; }
+    .section { padding: 52px 20px; }
+    .cards-3 { grid-template-columns: 1fr; }
+    .news-bg { padding: 52px 20px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .parallax-section { height: 300px; }
+    footer { padding: 28px 20px; flex-direction: column; }
+    .vision-strip { padding: 20px; flex-direction: column; gap: 12px; }
+    .vision-div { width: 40px; height: 1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="data:image/png;base64,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" alt="TPS">
+    <span class="nav-school-name">Thimphu Primary School</span>
+  </a>
+  <div class="nav-links">
+    <a href="#facebook">News</a>
+    <a href="https://www.facebook.com/thimphups" target="_blank">Facebook</a>
+    <a href="https://updates.thimphups.com/updates.html" class="nav-cta">This week's learning →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content" id="heroContent">
+    <span class="hero-tag">Thimphu, Bhutan · Light of Wisdom</span>
+    <h1>Where <em>curiosity</em><br>meets courage</h1>
+    <p>Sherab Doenme — a place where every child shines.</p>
+    <div class="hero-btns">
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY UPDATES HIGHLIGHT -->
+<div class="updates-highlight" id="updates">
+  <div class="updates-inner">
+    <div class="updates-left">
+      <div class="updates-eyebrow">Updated every Saturday morning</div>
+      <h2>What did your child learn this week?</h2>
+      <p>See what your child worked on across all subjects this week.</p>
+    </div>
+    <div class="updates-classes">
+      <a href="https://updates.thimphups.com/updates.html?class=PP" class="class-btn">PP</a>
+      <a href="https://updates.thimphups.com/updates.html?class=1" class="class-btn">Class 1</a>
+      <a href="https://updates.thimphups.com/updates.html?class=2" class="class-btn">Class 2</a>
+      <a href="https://updates.thimphups.com/updates.html?class=3" class="class-btn">Class 3</a>
+      <a href="https://updates.thimphups.com/updates.html?class=4" class="class-btn">Class 4</a>
+      <a href="https://updates.thimphups.com/updates.html?class=5" class="class-btn">Class 5</a>
+      <a href="https://updates.thimphups.com/updates.html?class=6" class="class-btn">Class 6</a>
+    </div>
+  </div>
+</div>
+
+<!-- VISION -->
+<div class="vision-strip">
+  <span class="vision-label">Our Vision</span>
+  <div class="vision-div"></div>
+  <p>We nurture curious minds and compassionate hearts in a safe, joyful environment where students discover their potential through exploration, develop the discipline to achieve it, and grow into problem-solvers who make our communities better.</p>
+</div>
+
+<!-- PARALLAX — CLASSROOM -->
+<div class="parallax-section">
+  <div class="parallax-bg" id="par1" style="background-image: url('images/classroom.jpg');"></div>
+  <div class="parallax-overlay">
+    <div class="parallax-text">
+      <h2>Learning that comes alive</h2>
+      <p>Colourful, active classrooms where students are engaged, creative and proud of their work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FACEBOOK -->
+<div id="facebook" style="padding: 64px 48px; max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+  <div style="text-align: center;">
+    <div style="font-family: Poppins, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow-dark); margin-bottom: 10px;">Follow along</div>
+    <div style="font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--dark); margin-bottom: 8px;">Life at TPS on Facebook</div>
+    <div style="font-size: 14px; color: #888;">Photos, videos and moments from school life — follow us to stay connected</div>
+  </div>
+  <div style="border-radius: 14px; overflow: hidden; border: 1px solid #eee; width: 100%; max-width: 500px;">
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthimphups&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+      width="500" height="600" style="border:none; display:block; width:100%;" scrolling="no"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+    </iframe>
+  </div>
+  <a href="https://www.facebook.com/thimphups" target="_blank" style="display:inline-block; background:#1877F2; color:#fff; font-family:Poppins,sans-serif; font-weight:600; font-size:13px; padding:12px 28px; border-radius:8px; text-decoration:none;">Visit our Facebook page</a>
+</div>
+
+<!-- PARALLAX — STAGE -->
+<div class="parallax-section">
+  <div class="parallax-bg" id="par2" style="background-image: url('images/stage.jpg');"></div>
+  <div class="parallax-overlay">
+    <div class="parallax-text">
+      <h2>Beyond the classroom</h2>
+      <p>Performances, field trips and events that build confidence and bring the community together.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFsAAABQCAYAAAB28QlaAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAKrElEQVR42u2ce3CcVRXAf/fe79tvN5sHTZu0aRsJ1NiWAi2tPNqhKI4FKYgvUEZxEMd/8A/FGev4fsyII+o46uBrcEaGGdFaEQcKtaiIT7AWKAUrom1pS1LbPDfZTfK97vGPbzdtEEnT4mYTvjNzZzfJ7H73/s65595z7rlRgJBKVUSnCFLYKexUUtgp7FRS2CnsFHYqKewUdiop7BT2K1icWu+gUqB18oqAlYl/UwpEkmZtjY+FGs36GZO8xvELu/vCrh/rfkUp1ibwU9gnAPkYYMX8VsNr12hWr4LOJdA6z+JlIIygr1+z7zl4Yjf8dadw4GA0PpyJ31M7IrXQlEKMqfxs5MorMvKzH3vS1+WIWC0iSkRImuXYe1EioqXYY+TBrRm5/t0Z8TwjgGidfG+tjLEmYGtdea/kjZdm5I+/zZQBI1JCogEk6E9aOHCsBQPHfifFihK0/G1XRt79Lk9ACyBGp7AngM56jtz2DU8kNCJxAjgcQOICYocmb3GhrIR+RIIE+s83e7Kg1U2AmxqYvdPps7VOFrOFC1x+tlmz9pKAuCCIHFsgT0asTZo7B/Y/m+Gaa+Hx3cG0+/Fpg10BvXihy2+2a15ztk/QD6778j0jCsFthMH+DJdvhB2PTS/waYFd2R/n6xz+8BvDygt8wn5w3Jf/WXEETh56ejKsXS/s3R+OK/oVEUEmg9XcflsCOvg/gQYwDoQlaFkYsPlOjeeZcWXPetiVaXzdNS7vuiEkHHh5XceLhskOBAOw5uKAT29yiGOF1rPcjVSsKZ837NmpWdwRYsd4GQaujgsZ/kcwISAawsjhnDWKvfvD8WhzVlq2Mcmg3/9eQ/vSiGjkVEErsICSSW1GKbAhZE+L2HSzQkRV3ZVU3bKNMex+xLBsZYA9FdiSmIrKaqR4ETglkCdfckgioBwYHnLoPBeO9kTjiaxZZdkVq75gjWb5ygg5JdAKHAW2Hf/hq4iefRPKdcuM1UsqO/ahcUHMVVeoCQmvWQW7MmUv36DAtcSn4iuNwJii9PX5SCGPs/wOJNhZfoidVE+CsHGDAnRVs4NVg50sRJqLzpckC3Ky/tJqVB0Ef85gOt9G9h17QPaVhzI5Oa1AhbBqpcV1k51RtXy3rpZVWwuuA0vOEIhOcoBS1poC+3wW07EMbBHsiS89SgEBLGoT2uarCbNuVu1GmpoUzXNOEraQnCs5C0BcxC8R7z8CelH5j+rEFR9Dtl5oaZm4cZw1lg2QzULWk8nc6os6WpWBuHsh8eHPgJqPPZxD1cVAz9QnSFlx+TqqSnua4qipfkSQKEPw8AJUYwvxP5oJ/nA67kofgn3lUdT4AWS1YFdW/NFRGPOn+FRR4IDtacAOWeLnexn+iME5ezVmye+RER+UnvpMCxWlkpos8Jy5ll0YEvr6E3hT3XKJb1CuYuT7X8YOO9R9fBES3FueKHZKitcGRotwpEeqybp6lq01RBHs3XdysJWJky8JIrzr3oxzxl+Q/oXgbJySexIBMtB1WHHkiEyYebPGsnXZrz6yQ8FUQmQlEIOeU0R7EcSCcuqAVYR/nocU3wvmxNcBKyAuPL5LE0YyHtnOKtiVAf3yVwKBnlKYLLGCeh9zbjfiNuHfs4Xgj+cRPNqELZVQxis/QJ2Q7hSKB7YnDqSayaiqwa5EajufiHnqCYOq4yVD9kqFk7WgjaBiyKzuofF1w8hzfQzftIm4W6C+lzgYw1qFTGKiImCyMNhluH+7He/XrINdSfrEseW7P1AoRyH2xYFEUeJ2TD2YvEMYuhztbaQwuIRDF/WiVoMeExovXYHT+jAmpzFNCu28NLw4BpWDu36q6e2Lq+pCKqtK1Q8PcjnD0zsMHZ0BdvS47J+Ud3H1MNqT55l/wbe/Bzseh0/ceDGXrX879+5zue+zn+Ku5Uu558rLuO+hW1nUmqGjQ7h6Y0j70iIyZMs57olKFAO+77DiPDhwKJrdhweVXcnISMxHPwkqo8cHKwIYGIsyfOVLGTpXRaxeF/GTu0dpb8txzcoCjY98jWvaB7ng6k5KHR0cHjvMU08WuG97gc99cZj1G3w+dnOef/dkUe5Eq40iMHnFl77s8NzBaNoOfaterJIUzCi543ueiCB+b7nQpmhk/bqcOI4rn/1kRp78qyOj/VpkLCulredIac9mCYNrJb6lU4a+8wUReY3IiBIpGTl60Mgvtrhyw/X1cuftTTI2rCQuF/AEfUmp2p9+7YnjGDFmesrSpuV03VowWrjpIxE7fu+RmQtBAMooXMeSzQpNTRrHUUiswQ2oW/08dUMP4WxtQ3tLabjpt8CzkDNQBy3t8Ja3h7zlqiJ3bY4oFgzKgbBcO9K93+W6G2KiKB4vMZ6ORMW0FunMb3F48AHDua/1CQYVPX15vnCL4vYfDgOGtgVwRofwqg5oVUIjOfLneNhwAL8EhSL09UNPH/T0LWTZ0jVsunk7q1YG+MPgNcPRbpfLroAnnw4xmlM7uJiJsI8H3jLXYfOPDJdeHoAvDPZm6Fxp6euPMCZLFDnlblowDsoa8vnTaDqtkebmOaxYsYLV553N619/Keeffwj8ywhLGrdZeGZ3hne807LnH2FNlBHXRGGlY4x85RZPoqIRESVvvSojoGXOnAZ59auXyCWXXCzXX/8e+dY3vynbtt0vu3Y9JoVCn7xQxgofEvERkYz86A5Pmk9zaqawctrv1FibHFVFcczHPhWw/g2a3z3k8OEPJueJo6M+vh8yPDxKHENkIYqEsbGQQqFEqVQiDAOiKALG8Bof5LHHNW+7WvOe94X0DyY7j1oojDfA56e7E0KlzAEOPi/ccaclsu20tHbyz38ewhiNtZZMxqOxsYGGhgZELLlcjoaGBhzHQRuHQwd38v4bvsqmTyj+/kyI1tVNNM0I2BPCaQ1KKXY/NcKGDRs5cGA/hUKBfD6PFYvruDiOQWuDMQbXzZDNZslls3zgAx/l5794Gq01WkvNXWiquat5lZ2CVj5bt97Ltde+E8dxOHLkKMXhEiMjo4yOjpUDlRjf9/E8j1tvvZW77/4prquxNq7J+zQ1e1tM68R1LF++nHXr1rFt2za6u7vJZrMsXryYM888k2XLlnP66a/i0UcfZcuWLeOfqVWpWdjHA29tbeXCCy9kYGCAPXv20NjYSH9/PyMjI+WFkZoHXfOwk+TVsdTpjTfeyL59+3Bdl127dtHb24tSCq01cS36jVr32f+9aApKKerr6xkYGGB4eJi6ujrq6+tRSqGUmhGgZwTs48XzPOI4plgs0tbWNulhQQr7JPy2iDB37lyKxSK+79PV1UVbWxuu69a8n54xPrvir+vq6mhvb6evrw/P88jlchw+fJhSqcRME6nFplRynSCfz8uaNWskl8tJrfZ1xuRGJrPstWvXsnfvXkZHR1HHHYWr6bjuNRt9dsV9LFq0CGstg4ODmHLtQ2UH8sL3M0GcWoZ91llnceDAgSSMnyHbuxkHuyJdXV0sXbqUYrE4Dtx1XcIwxHVdHMdBKcWhQ4cIwzDdjZyqNDc3M2/ePFpaWoiiCBHB932stURRxNDQEN3d3TNizz0jtn6zRWZEbuR48C+mgJmikJqHPZsk/b9+KewUdiop7BR2KinsFHYKO5UUdgo7lRR2CvuVLP8BcKXIGYT8qucAAAAASUVORK5CYII=" alt="TPS">
+    <div>
+      <div class="footer-school">Thimphu Primary School</div>
+      <div class="footer-tag">Sherab Doenme · Light of Wisdom · Thimphu, Bhutan</div>
+    </div>
+  </div>
+  <div class="footer-right">
+    © 2026 Thimphu Primary School<br>
+    <a href="https://updates.thimphups.com/updates.html" style="color: var(--yellow); text-decoration: none;">updates.thimphups.com</a>
+  </div>
+</footer>
+
+<script>
+  // Redirect updates subdomain to the updates page
+  if (window.location.hostname === 'updates.thimphups.com') {
+    const params = window.location.search;
+    window.location.replace('https://updates.thimphups.com/updates.html' + params);
+  }
+  // Parallax on scroll
+  function parallax() {
+    const scrollY = window.scrollY;
+
+    // Hero bg moves at 0.4x scroll speed
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) heroBg.style.transform = 'translateY(' + scrollY * 0.4 + 'px)';
+
+    // Hero content moves slightly faster than bg
+    const heroContent = document.getElementById('heroContent');
+    if (heroContent) heroContent.style.transform = 'translateY(' + scrollY * 0.15 + 'px)';
+
+    // Parallax sections
+    ['par1', 'par2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const rect = el.parentElement.getBoundingClientRect();
+      const offset = (rect.top + rect.height / 2 - window.innerHeight / 2);
+      el.style.transform = 'translateY(' + offset * 0.3 + 'px)';
+    });
+  }
+
+  window.addEventListener('scroll', parallax, { passive: true });
+  parallax();
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pcard, .ncard').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
